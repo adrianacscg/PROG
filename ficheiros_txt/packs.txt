@@ -1,0 +1,72 @@
+9
+1
+Madeira - Funchal, Porto Santo
+2019/08/01
+2019/08/05
+300
+74
+55
+::::::::::
+-2
+Veneza
+2019/03/02
+2019/03/05
+300
+24
+24
+::::::::::
+3
+Douro vinhateiro - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+100
+62
+12
+::::::::::
+4
+Veneza - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+100
+60
+24
+::::::::::
+-5
+Veneza5 - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+100
+56
+56
+::::::::::
+6
+Atenas - Coliseu, Fonte
+2019/08/21
+2019/09/25
+150
+70
+20
+::::::::::
+7
+Veneza - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+100
+62
+61
+::::::::::
+8
+Veneza8 - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+100
+62
+12
+::::::::::
+-9
+Veneza9 - Porto, Régua, Pinhão, Vila Real
+2019/09/21
+2019/09/22
+125
+34
+34
