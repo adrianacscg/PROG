@@ -40,16 +40,16 @@ void loadPacotes() {
                 break;
             case 2: {
                 data_valores = data_parser(linha);
-                data_begin.ano = data_valores[0];
-                data_begin.mes = data_valores[1];
-                data_begin.dia = data_valores[2];
+                data_begin.setAno(data_valores[0]);
+                data_begin.setMes(data_valores[1]);
+                data_begin.setDia(data_valores[2]);
                 pacote.data_inicio = data_begin;
                 break;}
             case 3: {
                 data_valores = data_parser(linha);
-                data_end.ano = data_valores[0];
-                data_end.mes = data_valores[1];
-                data_end.dia = data_valores[2];
+                data_end.setAno(data_valores[0]);
+                data_end.setMes(data_valores[1]);
+                data_end.setDia(data_valores[2]);
                 pacote.data_fim = data_end;
                 break;}
             case 4:
@@ -486,14 +486,14 @@ void criar_pacote() {
     TravelPack novo_pacote;
 
     Date data_begin;
-    data_begin.ano = data_parser(data_inicio)[0];
-    data_begin.mes = data_parser(data_inicio)[1];
-    data_begin.dia = data_parser(data_inicio)[2];
+    data_begin.setAno(data_parser(data_inicio)[0]);
+    data_begin.setMes(data_parser(data_inicio)[1]);
+    data_begin.setDia(data_parser(data_inicio)[2]);
 
     Date data_end;
-    data_end.ano = data_parser(data_fim)[0];
-    data_end.mes = data_parser(data_fim)[1];
-    data_end.dia = data_parser(data_fim)[2];
+    data_end.setAno(data_parser(data_fim)[0]);
+    data_end.setMes(data_parser(data_fim)[1]);
+    data_end.setDia(data_parser(data_fim)[2]);
 
     novo_pacote.id = ultimo_pacote + 1;
     novo_pacote.locais = destino_locais.str();
@@ -637,18 +637,18 @@ void alterar_pacote() {
 
     if (data_inicio != "M") {
         Date data_begin;
-        data_begin.ano = data_parser(data_inicio)[0];
-        data_begin.mes = data_parser(data_inicio)[1];
-        data_begin.dia = data_parser(data_inicio)[2];
+        data_begin.setAno(data_parser(data_inicio)[0]);
+        data_begin.setMes(data_parser(data_inicio)[1]);
+        data_begin.setDia(data_parser(data_inicio)[2]);
         pacote_alterar.data_inicio = data_begin;
     } else
         pacote_alterar.data_inicio = agencia.pacotes[index_pacote_alterar].data_inicio;
 
     if (data_fim != "M") {
         Date data_end;
-        data_end.ano = data_parser(data_fim)[0];
-        data_end.mes = data_parser(data_fim)[1];
-        data_end.dia = data_parser(data_fim)[2];
+        data_end.setAno(data_parser(data_fim)[0]);
+        data_end.setMes(data_parser(data_fim)[1]);
+        data_end.setDia(data_parser(data_fim)[2]);
         pacote_alterar.data_fim = data_end;
     } else
         pacote_alterar.data_fim = agencia.pacotes[index_pacote_alterar].data_fim;

@@ -9,14 +9,13 @@ using namespace std;
     // (true se a 1ª for antes ou no mesmo dia
     // da 2ª, false otherwise)
     bool compara_datas(Date data1, Date data2) {
-
-        if (data1.ano < data2.ano)
+        if (data1.getAno() < data2.getAno())
             return true;
-        else if (data1.ano == data2.ano) {
-            if (data1.mes < data2.mes)
+        else if (data1.getAno() == data2.getAno()) {
+            if (data1.getMes() < data2.getMes())
                 return true;
-            else if (data1.mes == data2.mes) {
-                if (data1.dia <= data2.dia)
+            else if (data1.getMes() == data2.getMes()) {
+                if (data1.getDia() <= data2.getDia())
                     return true;
                 else
                     return false;

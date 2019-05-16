@@ -109,13 +109,13 @@ string idPacotes_guardar(vector<TravelPack> vetor_pacotes) {
 string data_guardar(Date data) {
     stringstream data_ss;
 
-    data_ss << data.ano << "/";
+    data_ss << data.getAno() << "/";
 
-    if (data.mes > 9) data_ss << data.mes << "/";
-    else data_ss << "0" << data.mes << "/";
+    if (data.getMes() > 9) data_ss << data.getMes() << "/";
+    else data_ss << "0" << data.getMes() << "/";
 
-    if (data.dia > 9) data_ss << data.dia;
-    else data_ss << "0" << data.dia;
+    if (data.getDia() > 9) data_ss << data.getDia();
+    else data_ss << "0" << data.getDia();
 
     return data_ss.str();
 }

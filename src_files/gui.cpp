@@ -352,13 +352,13 @@ using namespace std;
 
         // Criação de duas datas para comparar
         Date data1;
-        data1.ano = data_parser(entreDatas_data1)[0];
-        data1.mes = data_parser(entreDatas_data1)[1];
-        data1.dia = data_parser(entreDatas_data1)[2];
+        data1.setAno(data_parser(entreDatas_data1)[0]);
+        data1.setMes(data_parser(entreDatas_data1)[1]);
+        data1.setDia(data_parser(entreDatas_data1)[2]);
         Date data2;
-        data2.ano = data_parser(entreDatas_data2)[0];
-        data2.mes = data_parser(entreDatas_data2)[1];
-        data2.dia = data_parser(entreDatas_data2)[2];
+        data2.setAno(data_parser(entreDatas_data2)[0]);
+        data2.setMes(data_parser(entreDatas_data2)[1]);
+        data2.setDia(data_parser(entreDatas_data2)[2]);
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
             // compara_datas();
@@ -425,13 +425,13 @@ using namespace std;
 
         // Criação de duas datas para comparar
         Date data1;
-        data1.ano = data_parser(entreDatas_data1)[0];
-        data1.mes = data_parser(entreDatas_data1)[1];
-        data1.dia = data_parser(entreDatas_data1)[2];
+        data1.setAno(data_parser(entreDatas_data1)[0]);
+        data1.setMes(data_parser(entreDatas_data1)[1]);
+        data1.setDia(data_parser(entreDatas_data1)[2]);
         Date data2;
-        data2.ano = data_parser(entreDatas_data2)[0];
-        data2.mes = data_parser(entreDatas_data2)[1];
-        data2.dia = data_parser(entreDatas_data2)[2];
+        data2.setAno(data_parser(entreDatas_data2)[0]);
+        data2.setMes(data_parser(entreDatas_data2)[1]);
+        data2.setDia(data_parser(entreDatas_data2)[2]);
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
             if (separa_destino_locais(agencia.pacotes[i].locais)[0] == destino &&
