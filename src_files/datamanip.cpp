@@ -76,8 +76,8 @@ vector<int> idPacotes_parser(string idPacotes_linha) {
 string morada_guardar(Address morada) {
     stringstream morada_ss;
 
-    morada_ss << morada.rua << " / " << morada.n_porta << " / " << morada.andar << " / "
-              << morada.codigo_postal << " / " << morada.localidade;
+    morada_ss << morada.getRua() << " / " << morada.getNumPorta() << " / " << morada.getAndar() << " / "
+              << morada.getCodigoPostal() << " / " << morada.getLocalidade();
 
     return morada_ss.str();
 }

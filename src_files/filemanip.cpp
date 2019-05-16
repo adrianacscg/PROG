@@ -108,11 +108,11 @@ void loadClientes() {
                 break;
             case 3:
                 morada_cliente_elementos = morada_parser(linha);
-                morada_cliente.rua = morada_cliente_elementos[0];
-                morada_cliente.n_porta = stoi(morada_cliente_elementos[1]);
-                morada_cliente.andar = morada_cliente_elementos[2];
-                morada_cliente.codigo_postal = morada_cliente_elementos[3];
-                morada_cliente.localidade = morada_cliente_elementos[4];
+                morada_cliente.setRua(morada_cliente_elementos[0]);
+                morada_cliente.setNumPorta(stoi(morada_cliente_elementos[1]));
+                morada_cliente.setAndar(morada_cliente_elementos[2]);
+                morada_cliente.setCodigoPostal(morada_cliente_elementos[3]);
+                morada_cliente.setLocalidade(morada_cliente_elementos[4]);
                 cliente.morada = morada_cliente;
                 break;
             case 4:
@@ -167,11 +167,11 @@ void loadAgencia() {
                 break;
             case 3: {
                 morada_agencia_elementos = morada_parser(linha);
-                morada_agencia.rua = morada_agencia_elementos[0];
-                morada_agencia.n_porta = stoi(morada_agencia_elementos[1]);
-                morada_agencia.andar = morada_agencia_elementos[2];
-                morada_agencia.codigo_postal = morada_agencia_elementos[3];
-                morada_agencia.localidade = morada_agencia_elementos[4];
+                morada_agencia.setRua(morada_agencia_elementos[0]);
+                morada_agencia.setNumPorta(stoi(morada_agencia_elementos[1]));
+                morada_agencia.setAndar(morada_agencia_elementos[2]);
+                morada_agencia.setCodigoPostal(morada_agencia_elementos[3]);
+                morada_agencia.setLocalidade(morada_agencia_elementos[4]);
                 agencia.morada = morada_agencia;
                 break;}
             case 4:
@@ -194,12 +194,12 @@ void loadAgencia() {
 string morada_processada(Address morada) {
     stringstream morada_processed;
 
-    morada_processed << morada.rua << ", nº" << morada.n_porta << ", ";
+    morada_processed << morada.getRua() << ", nº" << morada.getNumPorta() << ", ";
 
-    if (morada.andar != "-") {
-        morada_processed << morada.andar << ", " << morada.codigo_postal << " " << morada.localidade;
+    if (morada.getAndar() != "-") {
+        morada_processed << morada.getAndar() << ", " << morada.getCodigoPostal() << " " << morada.getLocalidade();
     } else
-        morada_processed << morada.codigo_postal << " " << morada.localidade;
+        morada_processed << morada.getCodigoPostal() << " " << morada.getLocalidade();
 
     return morada_processed.str();
 }
@@ -236,11 +236,11 @@ void criar_cliente() {
     vector<TravelPack> novo_vetor_pacotes;
 
     Address nova_morada;
-    nova_morada.rua = rua;
-    nova_morada.n_porta = stoi(n_porta);
-    nova_morada.andar = andar;
-    nova_morada.codigo_postal = codigo_postal;
-    nova_morada.localidade = localidade;
+    nova_morada.setRua(rua);
+    nova_morada.setNumPorta(stoi(n_porta));
+    nova_morada.setAndar(andar);
+    nova_morada.setCodigoPostal(codigo_postal);
+    nova_morada.setLocalidade(localidade);
 
     novo_cliente.nome = nome;
     novo_cliente.nif = stoi(nif);
@@ -340,7 +340,9 @@ void alterar_cliente() {
     // do cliente a alterar (com o nome introduzido)
     Client cliente_alterar;
     int index_cliente_alterar;              // variável que vai guardar o valor
-    // do index do cliente que vai ser alterado
+    										// do index do cliente que vai ser alterado
+
+    nome_antigo = capitalize(toLower(nome_antigo));
 
     for (size_t i = 0; i < agencia.clientes.size(); i++)
         if (agencia.clientes[i].nome == nome_antigo) {
@@ -351,17 +353,17 @@ void alterar_cliente() {
 
     // Verificar se mantém os elementos antigos
     // ou faz alteração se for o caso
-    if (nome_novo != "M")
+    if (nome_novo != "M" && nome_novo != "m")
         cliente_alterar.nome = nome_novo;
     else
         cliente_alterar.nome = agencia.clientes[index_cliente_alterar].nome;
 
-    if (nif != "M")
+    if (nif != "M" && nif != "m")
         cliente_alterar.nif = stoi(nif);
     else
         cliente_alterar.nif = agencia.clientes[index_cliente_alterar].nif;
 
-    if (n_pessoas_agregado != "M")
+    if (n_pessoas_agregado != "M" && n_pessoas_agregado != "m")
         cliente_alterar.n_pessoas_agregado = stoi(n_pessoas_agregado);
     else
         cliente_alterar.n_pessoas_agregado = agencia.clientes[index_cliente_alterar].n_pessoas_agregado;
@@ -369,30 +371,30 @@ void alterar_cliente() {
 
     Address morada_nova;
 
-    if (rua != "M")
-        morada_nova.rua = rua;
+    if (rua != "M" && rua != "m")
+        morada_nova.setRua(rua);
     else
-        morada_nova.rua = agencia.clientes[index_cliente_alterar].morada.rua;
+        morada_nova.setRua(agencia.clientes[index_cliente_alterar].morada.getRua());
 
-    if (n_porta != "M")
-        morada_nova.n_porta = stoi(n_porta);
+    if (n_porta != "M" && n_porta != "m")
+        morada_nova.setNumPorta(stoi(n_porta));
     else
-        morada_nova.n_porta = agencia.clientes[index_cliente_alterar].morada.n_porta;
+        morada_nova.setNumPorta(agencia.clientes[index_cliente_alterar].morada.getNumPorta());
 
-    if (andar != "M")
-        morada_nova.andar = andar;
+    if (andar != "M" && andar != "m")
+        morada_nova.setAndar(andar);
     else
-        morada_nova.andar = agencia.clientes[index_cliente_alterar].morada.andar;
+        morada_nova.setAndar(agencia.clientes[index_cliente_alterar].morada.getAndar());
 
-    if (codigo_postal != "M")
-        morada_nova.codigo_postal = codigo_postal;
+    if (codigo_postal != "M" && codigo_postal != "m")
+        morada_nova.setCodigoPostal(codigo_postal);
     else
-        morada_nova.codigo_postal = agencia.clientes[index_cliente_alterar].morada.codigo_postal;
+        morada_nova.setCodigoPostal(agencia.clientes[index_cliente_alterar].morada.getCodigoPostal());
 
-    if (localidade != "M")
-        morada_nova.localidade = localidade;
+    if (localidade != "M" && localidade != "m")
+        morada_nova.setLocalidade(localidade);
     else
-        morada_nova.localidade = agencia.clientes[index_cliente_alterar].morada.localidade;
+        morada_nova.setLocalidade(agencia.clientes[index_cliente_alterar].morada.getLocalidade());
 
     cliente_alterar.morada = morada_nova;
 

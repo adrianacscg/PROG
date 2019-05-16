@@ -138,6 +138,10 @@ using namespace std;
         cout << "Informações sobre o cliente " << nome << ":"<< endl;
         cout << endl;
 
+
+        //Tornar todos os inputs de nomes no formato correto
+        nome = capitalize(toLower(nome));
+
         for (size_t i = 0; i < agencia.clientes.size(); i++) {
             if (agencia.clientes[i].nome == nome) {
                 total_gasto = 0;
