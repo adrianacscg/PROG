@@ -14,9 +14,9 @@ class Date {
 
 
         // @Get Methods
-        const int getDia();
-        const int getMes();
-        const int getAno();
+        int getDia() const;
+        int getMes() const;
+        int getAno() const;
 
         // @Set Methods
         void setDia(int d);
@@ -25,15 +25,16 @@ class Date {
 
         // @Operators
         const bool operator < (Date d) {
-                if (this->ano < d.ano)return true;
-                if (this->ano == d.ano){
-                        if (this->mes < d.mes)return true;
-                        if (this->mes == d.mes){
-                                if (dia < d.dia)return true;
-                        }
+            if (this->ano < d.ano)return true;
+            if (this->ano == d.ano){
+                if (this->mes < d.mes)return true;
+                if (this->mes == d.mes){
+                    if (dia < d.dia)return true;
                 }
-                return false;
+            }
+            return false;
         }
+
         const bool operator == (Date d){
             if (dia == d.dia && mes == d.mes && ano == d.ano)return true;
             else return false;
