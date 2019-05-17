@@ -90,15 +90,15 @@ using namespace std;
 
             // Loop para calcular o dinheiro
             // gasto em pacotes por um cliente
-            for (size_t j = 0; j < agencia.clientes[i].pacotes_comprados.size(); j++) {
-                total_gasto += agencia.clientes[i].pacotes_comprados[j].preco;
+            for (size_t j = 0; j < agencia.clientes[i].getPacotesComprados().size(); j++) {
+                total_gasto += agencia.clientes[i].getPacotesComprados()[j].getPreco();
             }
 
             cout << "-------------- CLIENTE Nº" << i+1 << " --------------" << endl;
-            cout << "Nome: " << agencia.clientes[i].nome << endl;
-            cout << "NIF: " << agencia.clientes[i].nif << endl;
-            cout << "Número de pessoas no agregado familiar: " << agencia.clientes[i].n_pessoas_agregado << endl;
-            cout << "Morada: " << morada_processada(agencia.clientes[i].morada) << endl;
+            cout << "Nome: " << agencia.clientes[i].getNome() << endl;
+            cout << "NIF: " << agencia.clientes[i].getNif() << endl;
+            cout << "Número de pessoas no agregado familiar: " << agencia.clientes[i].getAgregadoFam()<< endl;
+            cout << "Morada: " << morada_processada(agencia.clientes[i].getMorada()) << endl;
             cout << "Quantia total gasta em pacotes: " << total_gasto << endl;
             cout << endl;
         }
@@ -143,20 +143,20 @@ using namespace std;
         nome = capitalize(toLower(nome));
 
         for (size_t i = 0; i < agencia.clientes.size(); i++) {
-            if (agencia.clientes[i].nome == nome) {
+            if (agencia.clientes[i].getNome() == nome) {
                 total_gasto = 0;
 
                 // Loop para calcular o dinheiro gasto
                 // em pacotes por um cliente
-                for (size_t j = 0; j < agencia.clientes[i].pacotes_comprados.size(); j++) {
-                    total_gasto += agencia.clientes[i].pacotes_comprados[j].preco;
+                for (size_t j = 0; j < agencia.clientes[i].getPacotesComprados().size(); j++) {
+                    total_gasto += agencia.clientes[i].getPacotesComprados()[j].getPreco();
                 }
 
                 cout << "-------------- CLIENTE Nº" << i+1 << " --------------" << endl;
-                cout << "Nome: " << agencia.clientes[i].nome << endl;
-                cout << "NIF: " << agencia.clientes[i].nif << endl;
-                cout << "Número de pessoas no agregado familiar: " << agencia.clientes[i].n_pessoas_agregado << endl;
-                cout << "Morada: " << morada_processada(agencia.clientes[i].morada) << endl;
+                cout << "Nome: " << agencia.clientes[i].getNome() << endl;
+                cout << "NIF: " << agencia.clientes[i].getNif() << endl;
+                cout << "Número de pessoas no agregado familiar: " << agencia.clientes[i].getAgregadoFam() << endl;
+                cout << "Morada: " << morada_processada(agencia.clientes[i].getMorada()) << endl;
                 cout << "Quantia total gasta em pacotes: " << total_gasto << endl;
                 cout << endl;
 
@@ -249,16 +249,16 @@ using namespace std;
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
             cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
-            if (agencia.pacotes[i].id < 0)
+            if (agencia.pacotes[i].getId() < 0)
                 cout << "Disponibilidade: Indisponível" << endl;
             else
                 cout << "Disponibilidade: Disponível" << endl;
-            cout << "Destino e locais: " << agencia.pacotes[i].locais << endl;
-            cout << "Data inicial: " << data_guardar(agencia.pacotes[i].data_inicio) << endl;
-            cout << "Data final: " << data_guardar(agencia.pacotes[i].data_fim) << endl;
-            cout << "Preço por pessoa: " << agencia.pacotes[i].preco << endl;
-            cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].lugares_max << endl;
-            cout << "Lugares já vendidos: " << agencia.pacotes[i].lugares_vendidos << endl;
+            cout << "Destino e locais: " << agencia.pacotes[i].getLocais() << endl;
+            cout << "Data inicial: " << data_guardar(agencia.pacotes[i].getDataInicio()) << endl;
+            cout << "Data final: " << data_guardar(agencia.pacotes[i].getDataFim()) << endl;
+            cout << "Preço por pessoa: " << agencia.pacotes[i].getPreco() << endl;
+            cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].getLugaresMax()<< endl;
+            cout << "Lugares já vendidos: " << agencia.pacotes[i].getLugaresVendidos() << endl;
             cout << endl;
         }
 
@@ -297,18 +297,18 @@ using namespace std;
         cout << endl;
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
-            if (separa_destino_locais(agencia.pacotes[i].locais)[0] == destino) {
+            if (separa_destino_locais(agencia.pacotes[i].getLocais())[0] == destino) {
                 cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
-                if (agencia.pacotes[i].id < 0)
+                if (agencia.pacotes[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
                     cout << "Disponibilidade: Disponível" << endl;
-                cout << "Destino e locais: " << agencia.pacotes[i].locais << endl;
-                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].data_inicio) << endl;
-                cout << "Data final: " << data_guardar(agencia.pacotes[i].data_fim) << endl;
-                cout << "Preço por pessoa: " << agencia.pacotes[i].preco << endl;
-                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].lugares_max << endl;
-                cout << "Lugares já vendidos: " << agencia.pacotes[i].lugares_vendidos << endl;
+                cout << "Destino e locais: " << agencia.pacotes[i].getLocais() << endl;
+                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].getDataInicio()) << endl;
+                cout << "Data final: " << data_guardar(agencia.pacotes[i].getDataFim()) << endl;
+                cout << "Preço por pessoa: " << agencia.pacotes[i].getPreco() << endl;
+                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].getLugaresMax() << endl;
+                cout << "Lugares já vendidos: " << agencia.pacotes[i].getLugaresVendidos() << endl;
                 cout << endl;
 
                 peloMenosUm_pacote = true;
@@ -366,20 +366,20 @@ using namespace std;
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
             // compara_datas();
-            if (compara_datas(data1, agencia.pacotes[i].data_inicio) == true
-                && compara_datas(agencia.pacotes[i].data_fim, data2) == true) {
+            if (compara_datas(data1, agencia.pacotes[i].getDataInicio()) == true
+                && compara_datas(agencia.pacotes[i].getDataFim(), data2) == true) {
 
                 cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
-                if (agencia.pacotes[i].id < 0)
+                if (agencia.pacotes[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
                     cout << "Disponibilidade: Disponível" << endl;
-                cout << "Destino e locais: " << agencia.pacotes[i].locais << endl;
-                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].data_inicio) << endl;
-                cout << "Data final: " << data_guardar(agencia.pacotes[i].data_fim) << endl;
-                cout << "Preço por pessoa: " << agencia.pacotes[i].preco << endl;
-                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].lugares_max << endl;
-                cout << "Lugares já vendidos: " << agencia.pacotes[i].lugares_vendidos << endl;
+                cout << "Destino e locais: " << agencia.pacotes[i].getLocais() << endl;
+                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].getDataInicio()) << endl;
+                cout << "Data final: " << data_guardar(agencia.pacotes[i].getDataFim()) << endl;
+                cout << "Preço por pessoa: " << agencia.pacotes[i].getPreco() << endl;
+                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].getLugaresMax() << endl;
+                cout << "Lugares já vendidos: " << agencia.pacotes[i].getLugaresVendidos() << endl;
                 cout << endl;
 
                 peloMenosUm_pacote = true;
@@ -438,20 +438,20 @@ using namespace std;
         data2.setDia(data_parser(entreDatas_data2)[2]);
 
         for (size_t i = 0; i < agencia.pacotes.size(); i++) {
-            if (separa_destino_locais(agencia.pacotes[i].locais)[0] == destino &&
-                compara_datas(data1, agencia.pacotes[i].data_inicio) == true &&
-                compara_datas(agencia.pacotes[i].data_fim, data2) == true) {
+            if (separa_destino_locais(agencia.pacotes[i].getLocais())[0] == destino &&
+                compara_datas(data1, agencia.pacotes[i].getDataInicio()) == true &&
+                compara_datas(agencia.pacotes[i].getDataFim(), data2) == true) {
                 cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
-                if (agencia.pacotes[i].id < 0)
+                if (agencia.pacotes[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
                     cout << "Disponibilidade: Disponível" << endl;
-                cout << "Destino e locais: " << agencia.pacotes[i].locais << endl;
-                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].data_inicio) << endl;
-                cout << "Data final: " << data_guardar(agencia.pacotes[i].data_fim) << endl;
-                cout << "Preço por pessoa: " << agencia.pacotes[i].preco << endl;
-                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].lugares_max << endl;
-                cout << "Lugares já vendidos: " << agencia.pacotes[i].lugares_vendidos << endl;
+                cout << "Destino e locais: " << agencia.pacotes[i].getLocais() << endl;
+                cout << "Data inicial: " << data_guardar(agencia.pacotes[i].getDataInicio()) << endl;
+                cout << "Data final: " << data_guardar(agencia.pacotes[i].getDataFim()) << endl;
+                cout << "Preço por pessoa: " << agencia.pacotes[i].getPreco() << endl;
+                cout << "Lugares inicialmente disponíveis: " << agencia.pacotes[i].getLugaresMax() << endl;
+                cout << "Lugares já vendidos: " << agencia.pacotes[i].getLugaresVendidos() << endl;
                 cout << endl;
 
                 peloMenosUm_pacote = true;
@@ -585,5 +585,4 @@ using namespace std;
                 cout << endl << "O programa vai agora terminar!" << endl;
                 return;
         }
-
     }

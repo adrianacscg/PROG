@@ -91,12 +91,12 @@ string idPacotes_guardar(vector<TravelPack> vetor_pacotes) {
     if (vetor_pacotes.empty())
         idPacotes_ss << "NENHUM PACOTE COMPRADO";
     else if (vetor_pacotes.size() == 1)
-        idPacotes_ss << abs(vetor_pacotes[0].id);
+        idPacotes_ss << abs(vetor_pacotes[0].getId());
     else {
-        idPacotes_ss << abs(vetor_pacotes[0].id);
+        idPacotes_ss << abs(vetor_pacotes[0].getId());
 
         for (size_t i = 1; i < vetor_pacotes.size(); i++) {
-            idPacotes_ss << " ; " << abs(vetor_pacotes[i].id);
+            idPacotes_ss << " ; " << abs(vetor_pacotes[i].getId());
         }
     }
 

@@ -20,15 +20,15 @@ using namespace std;
 /*
  * @Get Methods
  */
-    const int Date::getDia(){
+    int Date::getDia() const{
         return dia;
     }
 
-    const int Date::getMes(){
+    int Date::getMes() const{
         return mes;
     }
 
-    const int Date::getAno(){
+    int Date::getAno() const{
         return ano;
     }
 
