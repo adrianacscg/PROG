@@ -4,6 +4,7 @@
 using namespace std;
 
 bool compara_datas(Date data1, Date data2);
+bool pacoteVendido(TravelPack pacote);
 string lTrim(string &s);
 string rTrim(string s);
 string trim(string s);
