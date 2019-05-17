@@ -11,6 +11,7 @@ void retroceder(string menu);
 void informacoes_agencia();
 void informacoes_clientes();
 void informacoes_cliente_especifico();
+void informacoes_locais_mais_visitados();
 void informacoes_pacotes();
 void informacoes_pacotes_vendidos();
 void informacoes_pacotes_destino();

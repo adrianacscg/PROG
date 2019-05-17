@@ -10,3 +10,4 @@ string morada_guardar(Address morada);
 string idPacotes_guardar(vector<TravelPack> vetor_pacotes);
 string data_guardar(Date data);
 vector<string> separa_destino_locais(string locais_string);
+vector<string> getTodosOsLocais(vector<TravelPack> packs);

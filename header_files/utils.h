@@ -16,3 +16,4 @@ string capitalize(string s);
 template<typename vType> bool vectorIsEmpty(vector<vType>v);
 template<typename type> void getvar(type &var, istream &s);
 bool fileIsEmpty(ifstream& file);
+bool stringInVector(string s, vector<string> v);
