@@ -71,7 +71,7 @@ void loadPacotes() {
 
     }
 
-    agencia.pacotes = packs;
+    agencia.setPacotes(packs);
 
     ficheiro_pacotes.close();
 }
@@ -117,10 +117,10 @@ void loadClientes() {
                 break;
             case 4:
                 idPacotes_cliente = idPacotes_parser(linha);
-                for (size_t i = 0; i < agencia.pacotes.size(); i++) {
+                for (size_t i = 0; i < agencia.getPacotes().size(); i++) {
                     for (size_t j = 0; j < idPacotes_cliente.size(); j++)
-                        if (abs(agencia.pacotes[i].getId()) == idPacotes_cliente[j]) {
-                            packs_bought.push_back(agencia.pacotes[i]);
+                        if (abs(agencia.getPacotes()[i].getId()) == idPacotes_cliente[j]) {
+                            packs_bought.push_back(agencia.getPacotes()[i]);
                             break;
                         }
                 }
@@ -136,7 +136,7 @@ void loadClientes() {
         itens_count++;
     }
 
-    agencia.clientes = clients;
+    agencia.setClientes(clients);
 
     ficheiro_clientes.close();
 }
@@ -157,13 +157,13 @@ void loadAgencia() {
 
         switch (itens_count) {
             case 0:
-                agencia.nome = linha;
+                agencia.setNome(linha);
                 break;
             case 1:
-                agencia.nif = stoi(linha);
+                agencia.setNIF(stoi(linha));
                 break;
             case 2:
-                agencia.url = linha;
+                agencia.setURL(linha);
                 break;
             case 3: {
                 morada_agencia_elementos = morada_parser(linha);
@@ -172,7 +172,7 @@ void loadAgencia() {
                 morada_agencia.setAndar(morada_agencia_elementos[2]);
                 morada_agencia.setCodigoPostal(morada_agencia_elementos[3]);
                 morada_agencia.setLocalidade(morada_agencia_elementos[4]);
-                agencia.morada = morada_agencia;
+                agencia.setMorada(morada_agencia);
                 break;}
             case 4:
                 nome_ficheiro_clientes = linha;
@@ -249,7 +249,7 @@ void criar_cliente() {
     novo_cliente.setPacotesComprados(novo_vetor_pacotes);                // vetor vazio inicialmente
 
     // Adiciona o novo cliente ao vetor de clientes da agencia
-    agencia.clientes.push_back(novo_cliente);
+    agencia.getClientes().push_back(novo_cliente);
 
     // Abrir ficheiro de clientes para escrita
     stringstream ss;
@@ -280,20 +280,20 @@ void novo_ficheiroClientes() {
     ofstream novo_ficheiro("./ficheiros_txt/nome_temp.txt");
 
     // Guardar informação sobre o primeiro cliente
-    novo_ficheiro << agencia.clientes[0].getNome() << endl;
-    novo_ficheiro << agencia.clientes[0].getNif() << endl;
-    novo_ficheiro << agencia.clientes[0].getAgregadoFam() << endl;
-    novo_ficheiro << morada_guardar(agencia.clientes[0].getMorada()) << endl;
-    novo_ficheiro << idPacotes_guardar(agencia.clientes[0].getPacotesComprados());
+    novo_ficheiro << agencia.getClientes()[0].getNome() << endl;
+    novo_ficheiro << agencia.getClientes()[0].getNif() << endl;
+    novo_ficheiro << agencia.getClientes()[0].getAgregadoFam() << endl;
+    novo_ficheiro << morada_guardar(agencia.getClientes()[0].getMorada()) << endl;
+    novo_ficheiro << idPacotes_guardar(agencia.getClientes()[0].getPacotesComprados());
 
     // Guardar a informação dos restantes clientes
-    for (size_t i = 1; i < agencia.clientes.size(); i++) {
+    for (size_t i = 1; i < agencia.getClientes().size(); i++) {
         novo_ficheiro << endl << "::::::::::";
-        novo_ficheiro << endl << agencia.clientes[i].getNome();
-        novo_ficheiro << endl << agencia.clientes[i].getNif();
-        novo_ficheiro << endl << agencia.clientes[i].getAgregadoFam();
-        novo_ficheiro << endl << morada_guardar(agencia.clientes[i].getMorada());
-        novo_ficheiro << endl << idPacotes_guardar(agencia.clientes[i].getPacotesComprados());
+        novo_ficheiro << endl << agencia.getClientes()[i].getNome();
+        novo_ficheiro << endl << agencia.getClientes()[i].getNif();
+        novo_ficheiro << endl << agencia.getClientes()[i].getAgregadoFam();
+        novo_ficheiro << endl << morada_guardar(agencia.getClientes()[i].getMorada());
+        novo_ficheiro << endl << idPacotes_guardar(agencia.getClientes()[i].getPacotesComprados());
     }
 
     novo_ficheiro.close();
@@ -344,9 +344,9 @@ void alterar_cliente() {
 
     nome_antigo = capitalize(toLower(nome_antigo));
 
-    for (size_t i = 0; i < agencia.clientes.size(); i++)
-        if (agencia.clientes[i].getNome() == nome_antigo) {
-            cliente_alterar = agencia.clientes[i];
+    for (size_t i = 0; i < agencia.getClientes().size(); i++)
+        if (agencia.getClientes()[i].getNome() == nome_antigo) {
+            cliente_alterar = agencia.getClientes()[i];
             index_cliente_alterar = i;
             break;
         }
@@ -356,17 +356,17 @@ void alterar_cliente() {
     if (nome_novo != "M" && nome_novo != "m")
         cliente_alterar.setNome(nome_novo);
     else
-        cliente_alterar.setNome(agencia.clientes[index_cliente_alterar].getNome());
+        cliente_alterar.setNome(agencia.getClientes()[index_cliente_alterar].getNome());
 
     if (nif != "M" && nif != "m")
         cliente_alterar.setNif(stoi(nif));
     else
-        cliente_alterar.setNif(agencia.clientes[index_cliente_alterar].getNif());
+        cliente_alterar.setNif(agencia.getClientes()[index_cliente_alterar].getNif());
 
     if (n_pessoas_agregado != "M" && n_pessoas_agregado != "m")
         cliente_alterar.setAgregadoFam(stoi(n_pessoas_agregado));
     else
-        cliente_alterar.setAgregadoFam(agencia.clientes[index_cliente_alterar].getAgregadoFam());
+        cliente_alterar.setAgregadoFam(agencia.getClientes()[index_cliente_alterar].getAgregadoFam());
 
 
     Address morada_nova;
@@ -374,32 +374,32 @@ void alterar_cliente() {
     if (rua != "M" && rua != "m")
         morada_nova.setRua(rua);
     else
-        morada_nova.setRua(agencia.clientes[index_cliente_alterar].getMorada().getRua());
+        morada_nova.setRua(agencia.getClientes()[index_cliente_alterar].getMorada().getRua());
 
     if (n_porta != "M" && n_porta != "m")
         morada_nova.setNumPorta(stoi(n_porta));
     else
-        morada_nova.setNumPorta(agencia.clientes[index_cliente_alterar].getMorada().getNumPorta());
+        morada_nova.setNumPorta(agencia.getClientes()[index_cliente_alterar].getMorada().getNumPorta());
 
     if (andar != "M" && andar != "m")
         morada_nova.setAndar(andar);
     else
-        morada_nova.setAndar(agencia.clientes[index_cliente_alterar].getMorada().getAndar());
+        morada_nova.setAndar(agencia.getClientes()[index_cliente_alterar].getMorada().getAndar());
 
     if (codigo_postal != "M" && codigo_postal != "m")
         morada_nova.setCodigoPostal(codigo_postal);
     else
-        morada_nova.setCodigoPostal(agencia.clientes[index_cliente_alterar].getMorada().getCodigoPostal());
+        morada_nova.setCodigoPostal(agencia.getClientes()[index_cliente_alterar].getMorada().getCodigoPostal());
 
     if (localidade != "M" && localidade != "m")
         morada_nova.setLocalidade(localidade);
     else
-        morada_nova.setLocalidade(agencia.clientes[index_cliente_alterar].getMorada().getLocalidade());
+        morada_nova.setLocalidade(agencia.getClientes()[index_cliente_alterar].getMorada().getLocalidade());
 
     cliente_alterar.setMorada(morada_nova);
 
     // Alterar o cliente antigo para o cliente alterado
-    agencia.clientes[index_cliente_alterar] = cliente_alterar;
+    agencia.getClientes()[index_cliente_alterar] = cliente_alterar;
 
     // Depois da alteração cria um
     // novo ficheiro com a alteração e apaga o antigo
@@ -420,9 +420,9 @@ void remover_cliente() {
 
     // Percorre o vetor de pacotes e quando
     // encontra aquele com o id introduzido elimina-o
-    for (size_t i = 0; i < agencia.clientes.size(); i++)
-        if (agencia.clientes[i].getNome() == nome)
-            agencia.clientes.erase(agencia.clientes.begin()+i);
+    for (size_t i = 0; i < agencia.getClientes().size(); i++)
+        if (agencia.getClientes()[i].getNome() == nome)
+            agencia.getClientes().erase(agencia.getClientes().begin()+i);
 
     novo_ficheiroClientes();
 }
@@ -505,7 +505,7 @@ void criar_pacote() {
     novo_pacote.setLugaresMax(stoi(lugares_max));
     novo_pacote.setLugaresVendidos(0);
 
-    agencia.pacotes.push_back(novo_pacote);
+    agencia.getPacotes().push_back(novo_pacote);
 
     // Abrir ficheiro de pacotes para escrita
     stringstream ss;
@@ -543,24 +543,24 @@ void novo_ficheiroPacotes() {
     novo_ficheiro << ultimo_pacote << endl;
 
     // Guardar informação sobre o primeiro pacote
-    novo_ficheiro << agencia.pacotes[0].getId() << endl;
-    novo_ficheiro << agencia.pacotes[0].getLocais() << endl;
-    novo_ficheiro << data_guardar(agencia.pacotes[0].getDataInicio()) << endl;
-    novo_ficheiro << data_guardar(agencia.pacotes[0].getDataFim()) << endl;
-    novo_ficheiro << agencia.pacotes[0].getPreco() << endl;
-    novo_ficheiro << agencia.pacotes[0].getLugaresMax() << endl;
-    novo_ficheiro << agencia.pacotes[0].getLugaresVendidos();
+    novo_ficheiro << agencia.getPacotes()[0].getId() << endl;
+    novo_ficheiro << agencia.getPacotes()[0].getLocais() << endl;
+    novo_ficheiro << data_guardar(agencia.getPacotes()[0].getDataInicio()) << endl;
+    novo_ficheiro << data_guardar(agencia.getPacotes()[0].getDataFim()) << endl;
+    novo_ficheiro << agencia.getPacotes()[0].getPreco() << endl;
+    novo_ficheiro << agencia.getPacotes()[0].getLugaresMax() << endl;
+    novo_ficheiro << agencia.getPacotes()[0].getLugaresVendidos();
 
     // Guardar a informação dos restantes pacotes
-    for (size_t i = 1; i < agencia.pacotes.size(); i++) {
+    for (size_t i = 1; i < agencia.getPacotes().size(); i++) {
         novo_ficheiro << endl << "::::::::::";
-        novo_ficheiro << endl << agencia.pacotes[i].getId();
-        novo_ficheiro << endl << agencia.pacotes[i].getLocais();
-        novo_ficheiro << endl << data_guardar(agencia.pacotes[i].getDataInicio());
-        novo_ficheiro << endl << data_guardar(agencia.pacotes[i].getDataFim());
-        novo_ficheiro << endl << agencia.pacotes[i].getPreco();
-        novo_ficheiro << endl << agencia.pacotes[i].getLugaresMax();
-        novo_ficheiro << endl << agencia.pacotes[i].getLugaresVendidos();
+        novo_ficheiro << endl << agencia.getPacotes()[i].getId();
+        novo_ficheiro << endl << agencia.getPacotes()[i].getLocais();
+        novo_ficheiro << endl << data_guardar(agencia.getPacotes()[i].getDataInicio());
+        novo_ficheiro << endl << data_guardar(agencia.getPacotes()[i].getDataFim());
+        novo_ficheiro << endl << agencia.getPacotes()[i].getPreco();
+        novo_ficheiro << endl << agencia.getPacotes()[i].getLugaresMax();
+        novo_ficheiro << endl << agencia.getPacotes()[i].getLugaresVendidos();
     }
 
     novo_ficheiro.close();
@@ -608,9 +608,9 @@ void alterar_pacote() {
     int index_pacote_alterar;                   // variável que vai guardar o valor
                                                 // do index do pacote que vai ser alterado
 
-    for (size_t i = 0; i < agencia.pacotes.size(); i++)
-        if (abs(agencia.pacotes[i].getId()) == stoi(id)) {
-            pacote_alterar = agencia.pacotes[i];
+    for (size_t i = 0; i < agencia.getPacotes().size(); i++)
+        if (abs(agencia.getPacotes()[i].getId()) == stoi(id)) {
+            pacote_alterar = agencia.getPacotes()[i];
             index_pacote_alterar = i;
             break;
         }
@@ -621,10 +621,10 @@ void alterar_pacote() {
 
     if (destino == "M") {
         if (locais != "M") {
-            destino_locais << separa_destino_locais(agencia.pacotes[index_pacote_alterar].getLocais())[0] << " - " << locais;
+            destino_locais << separa_destino_locais(agencia.getPacotes()[index_pacote_alterar].getLocais())[0] << " - " << locais;
             pacote_alterar.getLocais() = destino_locais.str();
         } else {
-            destino_locais << separa_destino_locais(agencia.pacotes[index_pacote_alterar].getLocais())[0] << " - " << separa_destino_locais(agencia.pacotes[index_pacote_alterar].getLocais())[1];
+            destino_locais << separa_destino_locais(agencia.getPacotes()[index_pacote_alterar].getLocais())[0] << " - " << separa_destino_locais(agencia.getPacotes()[index_pacote_alterar].getLocais())[1];
             pacote_alterar.setLocais(destino_locais.str());
         }
     } else {
@@ -632,7 +632,7 @@ void alterar_pacote() {
             destino_locais << destino << " - " << locais;
             pacote_alterar.setLocais(destino_locais.str());
         } else {
-            destino_locais << destino << " - " << separa_destino_locais(agencia.pacotes[index_pacote_alterar].getLocais())[1];
+            destino_locais << destino << " - " << separa_destino_locais(agencia.getPacotes()[index_pacote_alterar].getLocais())[1];
             pacote_alterar.setLocais(destino_locais.str());
         }
     }
@@ -644,7 +644,7 @@ void alterar_pacote() {
         data_begin.setDia(data_parser(data_inicio)[2]);
         pacote_alterar.setDataInicio(data_begin);
     } else
-        pacote_alterar.setDataInicio(agencia.pacotes[index_pacote_alterar].getDataInicio());
+        pacote_alterar.setDataInicio(agencia.getPacotes()[index_pacote_alterar].getDataInicio());
 
     if (data_fim != "M") {
         Date data_end;
@@ -653,25 +653,25 @@ void alterar_pacote() {
         data_end.setDia(data_parser(data_fim)[2]);
         pacote_alterar.setDataFim(data_end);
     } else
-        pacote_alterar.setDataFim(agencia.pacotes[index_pacote_alterar].getDataFim());
+        pacote_alterar.setDataFim(agencia.getPacotes()[index_pacote_alterar].getDataFim());
 
     if (preco_pessoa != "M")
         pacote_alterar.setPreco(stof(preco_pessoa));
     else
-        pacote_alterar.setPreco(agencia.pacotes[index_pacote_alterar].getPreco());
+        pacote_alterar.setPreco(agencia.getPacotes()[index_pacote_alterar].getPreco());
 
     if (lugares_max != "M")
         pacote_alterar.setLugaresMax(stoi(lugares_max));
     else
-        pacote_alterar.setLugaresMax(agencia.pacotes[index_pacote_alterar].getLugaresMax());
+        pacote_alterar.setLugaresMax(agencia.getPacotes()[index_pacote_alterar].getLugaresMax());
 
     if (lugares_vendidos != "M")
         pacote_alterar.setLugaresVendidos(stoi(lugares_vendidos));
     else
-        pacote_alterar.setLugaresVendidos(agencia.pacotes[index_pacote_alterar].getLugaresVendidos());
+        pacote_alterar.setLugaresVendidos(agencia.getPacotes()[index_pacote_alterar].getLugaresVendidos());
 
     // Alterar o pacote antigo para o pacote alterado
-    agencia.pacotes[index_pacote_alterar] = pacote_alterar;
+    agencia.getPacotes()[index_pacote_alterar] = pacote_alterar;
 
     // Depois da alteração, cria um novo ficheiro
     // com a alteração e apaga o antigo
@@ -692,9 +692,9 @@ void remover_pacote() {
 
     // Percorre o vetor de pacotes e quando encontra
     // aquele com o id introduzido elimina-o
-    for (size_t i = 0; i < agencia.pacotes.size(); i++)
-        if (abs(agencia.pacotes[i].getId()) == stoi(id))
-            agencia.pacotes.erase(agencia.pacotes.begin()+i);
+    for (size_t i = 0; i < agencia.getPacotes().size(); i++)
+        if (abs(agencia.getPacotes()[i].getId()) == stoi(id))
+            agencia.getPacotes().erase(agencia.getPacotes().begin()+i);
 
     novo_ficheiroPacotes();
 }
@@ -720,15 +720,15 @@ void comprar_pacote() {
 
     // Pesquisar o pacote que está a ser comprado
     // e incrementa o número de lugares vendidos
-    for (size_t i = 0; agencia.pacotes.size(); i++) {
-        if (abs(agencia.pacotes[i].getId()) == stoi(id_pacote)) {
-            int lugaresVendidos = agencia.pacotes[i].getLugaresVendidos();
-            agencia.pacotes[i].setLugaresVendidos(lugaresVendidos++);
+    for (size_t i = 0; agencia.getPacotes().size(); i++) {
+        if (abs(agencia.getPacotes()[i].getId()) == stoi(id_pacote)) {
+            int lugaresVendidos = agencia.getPacotes()[i].getLugaresVendidos();
+            agencia.getPacotes()[i].setLugaresVendidos(lugaresVendidos++);
 
-            if (agencia.pacotes[i].getLugaresVendidos() == agencia.pacotes[i].getLugaresMax())
-                agencia.pacotes[i].setId(agencia.pacotes[i].getId() - agencia.pacotes[i].getId()*2);
+            if (agencia.getPacotes()[i].getLugaresVendidos() == agencia.getPacotes()[i].getLugaresMax())
+                agencia.getPacotes()[i].setId(agencia.getPacotes()[i].getId() - agencia.getPacotes()[i].getId()*2);
 
-            pacote_adicionar = agencia.pacotes[i];                  // pacote auxiliar toma o valor
+            pacote_adicionar = agencia.getPacotes()[i];                  // pacote auxiliar toma o valor
                                                                     // do pacote que foi comprado
             break;
         }
@@ -737,9 +737,9 @@ void comprar_pacote() {
     // Pesquisar o cliente que está a efetuar a compra
     // e adicionar no vetor de pacotes comprados o
     // pacote que está a comprar agora
-    for (size_t j = 0; j < agencia.clientes.size(); j++) {
-        if (agencia.clientes[j].getNome() == nome_cliente) {
-            agencia.clientes[j].getPacotesComprados().push_back(pacote_adicionar);
+    for (size_t j = 0; j < agencia.getClientes().size(); j++) {
+        if (agencia.getClientes()[j].getNome() == nome_cliente) {
+            agencia.getClientes()[j].getPacotesComprados().push_back(pacote_adicionar);
             break;
         }
     }
@@ -748,3 +748,6 @@ void comprar_pacote() {
     novo_ficheiroPacotes();
     novo_ficheiroClientes();
 }
+
+
+
