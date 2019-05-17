@@ -3,9 +3,8 @@
 using namespace std;
 
 
-
 /*
- * Opções
+ * Misc
  */
     // Função usada para efetuar a escolha de
     // uma opção para todos os menus existentes,
@@ -43,6 +42,67 @@ using namespace std;
         return stoi(opcao);
     }
 
+    void retroceder(string menu) {
+        if (menu == "agencia"){
+            cout << "1. Retroceder" << endl;
+            cout << "2. Sair" << endl;
+            cout << endl;
+            cout << "Que opção pretende escolher? ";
+
+            int n_opcoes = 2;
+            int opcao = escolher_opcao(n_opcoes);
+
+            switch(opcao) {
+                case 1:
+                    cout << string( 35, '\n' );
+                    menu_principal(5);
+                    return;
+                case 2:
+                    cout << endl << "O programa vai agora terminar!" << endl;
+                    return;
+            }
+        }
+        else if (menu == "clientes"){
+            cout << "1. Retroceder" << endl;
+            cout << "2. Sair" << endl;
+            cout << endl;
+            cout << "Que opção pretende escolher? ";
+
+            int n_opcoes = 2;
+            int opcao = escolher_opcao(n_opcoes);
+
+            switch(opcao) {
+                case 1:
+                    cout << string( 35, '\n' );
+                    menu_clientes(6);
+                    return;
+                case 2:
+                    cout << endl << "O programa vai agora terminar!" << endl;
+                    return;
+            }
+        }
+        else if (menu == "pacotes") {
+            cout << "1. Retroceder" << endl;
+            cout << "2. Sair" << endl;
+            cout << endl;
+            cout << "Que opção pretende escolher? ";
+
+            int n_opcoes = 2;
+            int opcao = escolher_opcao(n_opcoes);
+
+            switch(opcao) {
+                case 1:
+                    cout << string( 35, '\n' );
+                    menu_pacotes(8);
+                    return;
+                case 2:
+                    cout << endl << "O programa vai agora terminar!" << endl;
+                    return;
+            }
+        }
+    }
+
+
 
 /*
  * Agência
@@ -56,23 +116,8 @@ using namespace std;
         cout << "Site: " << agencia.getURL() << endl;
         cout << "Morada: " << morada_processada(agencia.getMorada()) << endl;
         cout << endl;
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
 
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string( 35, '\n' );
-                menu_principal(5);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("agencia");
     }
 
 
@@ -105,32 +150,15 @@ using namespace std;
             cout << endl;
         }
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string( 35, '\n' );
-                menu_clientes(6);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("clientes");
     }
-
 
     // Função que imprime a informação relativa
     // a todos os pacotes de um destino específico
     void informacoes_cliente_especifico() {
         string nome;
         bool peloMenosUm_cliente = false;           // flag para imprimir caso não exista
-        // nenhum cliente com o nome introduzido
+                                                    // nenhum cliente com o nome introduzido
         float total_gasto;
 
         cout << endl;
@@ -169,23 +197,7 @@ using namespace std;
         if (peloMenosUm_cliente == false)
             cout << "Não existe nenhum cliente com esse nome..." << endl << endl;
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string( 35, '\n' );
-                menu_clientes(6);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("clientes");
     }
 
 
@@ -198,10 +210,10 @@ using namespace std;
              << "--                                                      --" << endl
              << "--                 CLIENTES DA AGÊNCIA                  --" << endl
              << "--                                                      --" << endl
-             << "-- 1. Ver informação de todos os clientes               --" << endl
-             << "-- 2. Pesquisar cliente                                 --" << endl
+             << "-- 1. Todos os clientes                                 --" << endl
+             << "-- 2. Procurar cliente                                  --" << endl
              << "-- 3. Novo cliente                                      --" << endl
-             << "-- 4. Alterar dados de um cliente                       --" << endl
+             << "-- 4. Alterar cliente                                   --" << endl
              << "-- 5. Remover cliente                                   --" << endl
              << "-- 6. Retroceder                                        --" << endl
              << "--                                                      --" << endl
@@ -250,7 +262,7 @@ using namespace std;
         cout << endl;
 
         for (size_t i = 0; i < agencia.getPacotes().size(); i++) {
-            cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
+            cout << "-------------- PACOTE " << abs(agencia.getPacotes()[i].getId()) << " --------------" << endl;
             if (agencia.getPacotes()[i].getId() < 0)
                 cout << "Disponibilidade: Indisponível" << endl;
             else
@@ -264,32 +276,42 @@ using namespace std;
             cout << endl;
         }
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string( 35, '\n' );
-                menu_pacotes(8);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("pacotes");
     }
 
+
+    // Função que imprime a informação
+    // relativa a todos os pacotes vendidos
+    void informacoes_pacotes_vendidos(){
+        cout << "Informações sobre os pacotes vendidos:" << endl;
+        cout << endl;
+
+        for (size_t i = 0; i < agencia.getPacotes().size(); i++) {
+            if(pacoteVendido(agencia.getPacotes()[i])) {
+                cout << "-------------- PACOTE " << abs(agencia.getPacotes()[i].getId()) << " --------------" << endl;
+                if (agencia.getPacotes()[i].getId() < 0)
+                    cout << "Disponibilidade: Indisponível" << endl;
+                else
+                    cout << "Disponibilidade: Disponível" << endl;
+                cout << "Destino e locais: " << agencia.getPacotes()[i].getLocais() << endl;
+                cout << "Data inicial: " << data_guardar(agencia.getPacotes()[i].getDataInicio()) << endl;
+                cout << "Data final: " << data_guardar(agencia.getPacotes()[i].getDataFim()) << endl;
+                cout << "Preço por pessoa: " << agencia.getPacotes()[i].getPreco() << endl;
+                cout << "Lugares inicialmente disponíveis: " << agencia.getPacotes()[i].getLugaresMax()<< endl;
+                cout << "Lugares já vendidos: " << agencia.getPacotes()[i].getLugaresVendidos() << endl;
+                cout << endl;
+            }
+        }
+
+        retroceder("pacotes");
+    }
 
     // Função que imprime a informação relativa a
     // todos os pacotes de um destino específico
     void informacoes_pacotes_destino() {
         string destino;
         bool peloMenosUm_pacote = false; 				// flag para imprimir caso não exista
-        // nenhum pacote entre as datas introduzidas
+                                                        // nenhum pacote entre as datas introduzidas
 
         cout << endl;
         cout << "Qual o destino cujos pacotes pretende pesquisar? ";
@@ -300,7 +322,7 @@ using namespace std;
 
         for (size_t i = 0; i < agencia.getPacotes().size(); i++) {
             if (separa_destino_locais(agencia.getPacotes()[i].getLocais())[0] == destino) {
-                cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
+                cout << "-------------- PACOTE " << abs(agencia.getPacotes()[i].getId()) << " --------------" << endl;
                 if (agencia.getPacotes()[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
@@ -320,23 +342,7 @@ using namespace std;
         if (peloMenosUm_pacote == false)
             cout << "Não existe nenhum pacote com esse destino..." << endl << endl;
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string(35, '\n');
-                menu_pacotes(8);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("pacotes");
     }
 
 
@@ -345,7 +351,7 @@ using namespace std;
     void informacoes_pacotes_entreDatas() {
         string entreDatas_data1, entreDatas_data2;
         bool peloMenosUm_pacote = false; 				// flag para imprimir caso não exista nenhum
-        // pacote entre as datas introduzidas
+                                                        // pacote entre as datas introduzidas
 
         cout << endl;
         cout << "Qual a primeira data para a filtragem? (no formato YYYY/MM/DD) ";
@@ -371,7 +377,7 @@ using namespace std;
             if (compara_datas(data1, agencia.getPacotes()[i].getDataInicio()) == true
                 && compara_datas(agencia.getPacotes()[i].getDataFim(), data2) == true) {
 
-                cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
+                cout << "-------------- PACOTE " << abs(agencia.getPacotes()[i].getId())<< " --------------" << endl;
                 if (agencia.getPacotes()[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
@@ -391,23 +397,7 @@ using namespace std;
         if (peloMenosUm_pacote == false)
             cout << "Não existe nenhum pacote entre as datas introduzidas..." << endl << endl;
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string(35, '\n');
-                menu_pacotes(8);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("pacotes");
     }
 
 
@@ -416,7 +406,7 @@ using namespace std;
     void informacoes_pacotes_destinoEentreDatas() {
         string destino, entreDatas_data1, entreDatas_data2;
         bool peloMenosUm_pacote = false;                    // flag para imprimir caso não exista
-        // nenhum pacote entre as datas introduzidas
+                                                            // nenhum pacote entre as datas introduzidas
 
         cout << endl;
         cout << "Qual o destino cujos pacotes pretende pesquisar? ";
@@ -443,7 +433,7 @@ using namespace std;
             if (separa_destino_locais(agencia.getPacotes()[i].getLocais())[0] == destino &&
                 compara_datas(data1, agencia.getPacotes()[i].getDataInicio()) == true &&
                 compara_datas(agencia.getPacotes()[i].getDataFim(), data2) == true) {
-                cout << "-------------- PACOTE Nº" << i+1 << " --------------" << endl;
+                cout << "-------------- PACOTE " << abs(agencia.getPacotes()[i].getId()) << " --------------" << endl;
                 if (agencia.getPacotes()[i].getId() < 0)
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
@@ -463,23 +453,7 @@ using namespace std;
         if (peloMenosUm_pacote == false)
             cout << "Não existe nenhum pacote com esse destino..." << endl << endl;
 
-        cout << "1. Retroceder" << endl;
-        cout << "2. Sair" << endl;
-        cout << endl;
-        cout << "Que opção pretende escolher? ";
-
-        int n_opcoes = 2;
-        int opcao = escolher_opcao(n_opcoes);
-
-        switch(opcao) {
-            case 1:
-                cout << string( 35, '\n' );
-                menu_pacotes(8);
-                return;
-            case 2:
-                cout << endl << "O programa vai agora terminar!" << endl;
-                return;
-        }
+        retroceder("pacotes");
     }
 
 
@@ -492,14 +466,15 @@ using namespace std;
              << "--                                                                --" << endl
              << "--                  PACOTES TURÍSTICOS DA AGÊNCIA                 --" << endl
              << "--                                                                --" << endl
-             << "-- 1. Ver informação de todos os pacotes                          --" << endl
-             << "-- 2. Ver informação dos pacotes de um destino                    --" << endl
-             << "-- 3. Ver informação dos pacotes entre duas datas                 --" << endl
-             << "-- 4. Ver informação dos pacotes de um destino e entre duas datas --" << endl
-             << "-- 5. Criar um novo pacote                                        --" << endl
-             << "-- 6. Alterar dados de um pacote                                  --" << endl
-             << "-- 7. Remover um pacote                                           --" << endl
-             << "-- 8. Retroceder                                                  --" << endl
+             << "-- 1. Todos os pacotes                                            --" << endl
+             << "-- 2. Pacotes vendidos                                            --" << endl
+             << "-- 3. Procurar pacotes por destino                                --" << endl
+             << "-- 4. Procurar pacotes entre duas datas                           --" << endl
+             << "-- 5. Procurar pacotes por destino e entre duas datas             --" << endl
+             << "-- 6. Novo pacote                                                 --" << endl
+             << "-- 7. Alterar pacote                                              --" << endl
+             << "-- 8. Remover pacote                                              --" << endl
+             << "-- 9. Retroceder                                                  --" << endl
              << "--                                                                --" << endl
              << "--------------------------------------------------------------------" << endl
              << "--------------------------------------------------------------------" << endl
@@ -514,27 +489,30 @@ using namespace std;
                 informacoes_pacotes();
                 return;
             case 2:
-                informacoes_pacotes_destino();
+                informacoes_pacotes_vendidos();
                 return;
             case 3:
-                informacoes_pacotes_entreDatas();
+                informacoes_pacotes_destino();
                 return;
             case 4:
-                informacoes_pacotes_destinoEentreDatas();
+                informacoes_pacotes_entreDatas();
                 return;
             case 5:
+                informacoes_pacotes_destinoEentreDatas();
+                return;
+            case 6:
                 criar_pacote();
                 menu_pacotes(8);
                 return;
-            case 6:
+            case 7:
                 alterar_pacote();
                 menu_pacotes(8);
                 return;
-            case 7:
+            case 8:
                 remover_pacote();
                 menu_pacotes(8);
                 return;
-            case 8:
+            case 9:
                 cout << string( 35, '\n' );
                 menu_principal(5);
                 return;

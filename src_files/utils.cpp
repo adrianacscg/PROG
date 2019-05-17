@@ -25,6 +25,10 @@ using namespace std;
             return false;
     }
 
+    bool pacoteVendido(TravelPack pacote){
+        return pacote.getLugaresVendidos() > 0;
+    }
+
 
 /*
  * Métodos Strings
