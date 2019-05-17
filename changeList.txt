@@ -1,0 +1,13 @@
+Validações dos inputs:
+    • Testar para inputs negativos
+    • Testar para inputs out of range
+    • Testar para inputs do mesmo tipo ou tipos diferentes
+    • Testar para length do input
+
+Cancelar operações:
+    • Pesquisas
+    • Novas entradas
+    • Alterações de dados
+    • Remoções de dados
+
+Remover termina o programa
