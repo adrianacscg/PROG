@@ -138,3 +138,29 @@ vector<string> separa_destino_locais(string locais_string) {
 
     return destino_locais;
 }
+
+// função que vai buscar todos os locais em
+// todos os pacotes colocando-os num vetor
+vector<string> getTodosOsLocais(vector<TravelPack> packs){
+    vector<string> locais;
+    vector<string> tmp;
+
+    for (auto pack : packs){
+        // Se existir um '-' na string parte-a em 2
+        // e coloca ambas as partes num vector.
+        // Atualiza o valor de tmp partindo a string do
+        // segundo elemento pelo delimitador ' '
+        if (pack.getLocais().find('-')) {
+            tmp = split(pack.getLocais(), '-');
+            tmp = split(tmp[1], ' ');
+        }
+        else tmp.push_back(pack.getLocais());
+
+        for (auto poi : tmp){
+            // verifica se poi está no vect locais
+            // se nao estiver, push do poi
+            if (!stringInVector(poi, locais)) locais.push_back(poi);
+        }
+    }
+    return locais;
+}

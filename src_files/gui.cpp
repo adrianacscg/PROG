@@ -18,7 +18,7 @@ using namespace std;
         cin.ignore(1000, '\n');
 
         while (cin.fail() || opcao.size() != 1 || opcao == "0" || e_int == false) {
-            for (int i = 1; i <= n_op; i++) {
+            for (int i = 1; i <= n_op+1; i++) {
                 char a = opcao[0];
                 char b = to_string(i)[0];
 
@@ -293,6 +293,7 @@ using namespace std;
                     cout << "Disponibilidade: Indisponível" << endl;
                 else
                     cout << "Disponibilidade: Disponível" << endl;
+
                 cout << "Destino e locais: " << agencia.getPacotes()[i].getLocais() << endl;
                 cout << "Data inicial: " << data_guardar(agencia.getPacotes()[i].getDataInicio()) << endl;
                 cout << "Data final: " << data_guardar(agencia.getPacotes()[i].getDataFim()) << endl;
@@ -304,6 +305,29 @@ using namespace std;
         }
 
         retroceder("pacotes");
+    }
+
+    void informacoes_locais_mais_visitados(){
+        cout << "Locais mais visitados:" << endl;
+        cout << endl;
+
+        map<string, int> locaisEVisitas;
+
+        vector<string> listaDeLocais = getTodosOsLocais(agencia.getPacotes());
+        vector<TravelPack> todosOsPacotes = agencia.getPacotes();
+        vector<TravelPack> pacotesVendidos;
+        vector<int> visitasPorLocal;
+
+        for (auto pacote : todosOsPacotes)
+            if (pacoteVendido(pacote)) pacotesVendidos.push_back(pacote);
+
+        for (auto pacote : pacotesVendidos){
+            for (auto local : listaDeLocais) {
+                if (pacote.getLocais().find(local))
+                    locaisEVisitas[local] = pacote.getLugaresVendidos();
+
+            }
+        }
     }
 
     // Função que imprime a informação relativa a
@@ -513,7 +537,7 @@ using namespace std;
                 menu_pacotes(8);
                 return;
             case 9:
-                cout << string( 35, '\n' );
+                cout << string(35, '\n');
                 menu_principal(5);
                 return;
         }

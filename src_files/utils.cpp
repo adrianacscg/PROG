@@ -108,6 +108,9 @@ using namespace std;
         return v.size() == 0;
     }
 
+    bool stringInVector(string s, vector<string> v) {
+        return find(v.begin(), v.end(), s) != v.end();
+    }
 
 /*
  * Métodos Stream
